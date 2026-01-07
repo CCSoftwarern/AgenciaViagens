@@ -1,3 +1,4 @@
+import { create } from "domain";
 import { projectId, publicAnonKey } from "./supabase/info";
 
 const BASE_URL = `https://${projectId}.supabase.co/functions/v1/make-server-0c7f2afa`;
@@ -104,9 +105,46 @@ export const servicesAPI = {
 
 // Contact
 export const contactAPI = {
+  getAll: () => fetchAPI("/contacts"),
+
   submit: (contactData: any) =>
     fetchAPI("/contact", {
       method: "POST",
       body: JSON.stringify(contactData),
     }),
+
+    delete: (id: string) =>
+      fetchAPI(`/contacts/${id}`, {
+        method: "DELETE",
+        requireAuth: true,
+      }),
+
+    };
+//Dados da agencia
+export const agencyAPI = {
+  getInfo: () => fetchAPI("/agencyinfos"),
+  getById: (id: string) => fetchAPI(`/agencyinfo/${id}`),
+
+  create: (agencyInfo: any) =>
+    fetchAPI("/agencyinfos", {
+      method: "POST",
+      body: JSON.stringify(agencyInfo),
+      requireAuth: true,
+    }), 
+
+   update: (id: string, service: any) =>
+    fetchAPI(`/agencyinfos/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(service),
+      requireAuth: true,
+    }),
+
+  delete: (id: string) =>
+    fetchAPI(`/agencyinfos/${id}`, {
+      method: "DELETE",
+      requireAuth: true,
+    }),
+
+
+  
 };

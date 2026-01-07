@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui
 import { Database, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner@2.0.3";
-import { promotionsAPI, servicesAPI } from "../../utils/api";
+import { promotionsAPI, servicesAPI, agencyAPI } from "../../utils/api";
 
 const initialPromotions = [
   {
@@ -107,6 +107,26 @@ const initialServices = [
   },
 ];
 
+const initialagencyInfo = [{
+  name: "Agência de Viagens Exemplo",
+  slogan: "Transformando sonhos em realidade",
+  description: "Somos uma agência de viagens dedicada a oferecer as melhores experiências para nossos clientes. Com anos de expertise no mercado, proporcionamos viagens inesquecíveis com atendimento personalizado.",
+  address: "Rua das Flores, 123 - São Paulo, SP",
+  phone1: "+55 (11) 1234-5678",
+  phone2: "+55 (11) 9876-5432",
+  watsapp: "+55 (11) 91234-5678",
+  email: "contato@agenciaviagens.com.br",
+  facebook: "https://www.facebook.com/agenciaviagens",
+  instagram: "https://www.instagram.com/agenciaviagens",
+  twitter: "https://www.twitter.com/agenciaviagens",
+  linkedin: "https://www.linkedin.com/company/agenciaviagens",
+  youyube: "https://www.youtube.com/agenciaviagens",
+  backgroundImage: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cmF2ZWx8ZW58MXx8fHwxNzYyNzgyNjI0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+  imglogo: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cmF2ZWx8ZW58MXx8fHwxNzYyNzgyNjI0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+  liberado: true,
+  enderecoCompleto: "Rua das Flores, 123, São Paulo, SP, 01234-567",
+  
+}];
 export function DataSeeder() {
   const [isSeeding, setIsSeeding] = useState(false);
 
@@ -122,6 +142,11 @@ export function DataSeeder() {
       // Seed services
       for (const service of initialServices) {
         await servicesAPI.create(service);
+      }
+
+            // Seed agency info
+      for (const agency of initialagencyInfo) {
+        await agencyAPI.create(agency);
       }
 
       toast.success("Dados iniciais carregados com sucesso!");

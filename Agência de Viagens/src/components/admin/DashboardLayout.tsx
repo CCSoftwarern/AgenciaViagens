@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react";
 import { Button } from "../ui/button";
-import { Plane, LayoutDashboard, Tag, Settings, LogOut, Menu, X } from "lucide-react";
+import { Plane, LayoutDashboard, Tag, Settings, LogOut, Menu, X, Contact } from "lucide-react";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -21,6 +21,7 @@ export function DashboardLayout({
     { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
     { id: "promotions", label: "Promoções", icon: Tag },
     { id: "services", label: "Serviços", icon: Settings },
+    { id: "contacts", label: "Contatos", icon: Contact },
   ];
 
   return (
@@ -37,7 +38,7 @@ export function DashboardLayout({
             </button>
             <div className="flex items-center gap-2">
               <Plane className="w-8 h-8 text-blue-600" />
-              <span className="text-xl">Admin ViagemPlus</span>
+              <span className="text-xl">Sua agência</span>
             </div>
           </div>
           <Button variant="outline" onClick={onLogout}>

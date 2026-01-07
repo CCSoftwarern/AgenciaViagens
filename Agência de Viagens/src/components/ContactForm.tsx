@@ -7,6 +7,7 @@ import { Mail, Phone, MapPin, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner@2.0.3";
 import { contactAPI } from "../utils/api";
+import { useAgency } from "../context/AgencyContext";
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ export function ContactForm() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { agencyInfo } = useAgency();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -147,7 +149,7 @@ export function ContactForm() {
                   <Mail className="w-6 h-6 text-blue-600 mt-1" />
                   <div>
                     <h3 className="mb-2">E-mail</h3>
-                    <p className="text-gray-600">contato@viagemplus.com</p>
+                    <p className="text-gray-600">{agencyInfo?.email}</p>
                   </div>
                 </div>
               </CardContent>
@@ -159,8 +161,8 @@ export function ContactForm() {
                   <Phone className="w-6 h-6 text-blue-600 mt-1" />
                   <div>
                     <h3 className="mb-2">Telefone</h3>
-                    <p className="text-gray-600">(11) 9999-9999</p>
-                    <p className="text-gray-600">(11) 3333-3333</p>
+                    <p className="text-gray-600">{agencyInfo?.phone1}</p>
+                    <p className="text-gray-600">{agencyInfo?.phone2}</p>
                   </div>
                 </div>
               </CardContent>
@@ -173,11 +175,7 @@ export function ContactForm() {
                   <div>
                     <h3 className="mb-2">Endereço</h3>
                     <p className="text-gray-600">
-                      Av. Paulista, 1000
-                      <br />
-                      São Paulo - SP
-                      <br />
-                      CEP: 01310-100
+                      {agencyInfo?.enderecoCompleto}
                     </p>
                   </div>
                 </div>

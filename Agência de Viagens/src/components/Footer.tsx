@@ -1,6 +1,8 @@
 import { Plane, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { useAgency } from "../context/AgencyContext"
 
 export function Footer() {
+  const { agencyInfo } = useAgency();
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="container mx-auto px-4">
@@ -8,10 +10,11 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Plane className="w-8 h-8 text-blue-400" />
-              <span className="text-xl">ViagemPlus</span>
+              <span className="text-xl">{agencyInfo?.name}</span>
             </div>
             <p className="text-gray-400">
-              Sua agência de viagens especializada em criar experiências únicas e inesquecíveis.
+              {agencyInfo?.description ||
+                "Sua parceira de viagens para destinos incríveis ao redor do mundo. Oferecemos experiências personalizadas para tornar sua viagem inesquecível."}
             </p>
           </div>
 
@@ -56,25 +59,25 @@ export function Footer() {
             <h3 className="mb-4">Redes Sociais</h3>
             <div className="flex gap-4">
               <a
-                href="#"
+                href={`${agencyInfo?.facebook || '#'}`}
                 className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition"
               >
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href={`${agencyInfo?.instagram || '#'}`}
                 className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition"
               >
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href={`${agencyInfo?.twitter || '#'}`}
                 className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-400 transition"
               >
                 <Twitter className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href={`${agencyInfo?.youyube  || '#'}`}
                 className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 transition"
               >
                 <Youtube className="w-5 h-5" />
@@ -84,7 +87,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>© 2025 ViagemPlus. Todos os direitos reservados.</p>
+          <p>© 2026 {agencyInfo?.name}. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>

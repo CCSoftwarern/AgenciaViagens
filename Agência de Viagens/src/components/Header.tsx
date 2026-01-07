@@ -1,8 +1,12 @@
 import { Plane, Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useAgency } from "../context/AgencyContext";
+import React from "react";
+
 
 export function Header() {
+const { agencyInfo } = useAgency();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -10,7 +14,7 @@ export function Header() {
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Plane className="w-8 h-8 text-blue-600" />
-          <span className="text-xl">NewVtour Viagens e Turismo</span>
+          <span className="text-xl">{agencyInfo?.name}</span>
         </div>
 
         {/* Desktop Menu */}

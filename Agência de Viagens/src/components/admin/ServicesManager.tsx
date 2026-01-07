@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 import { Card, CardContent } from "../ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 import { Plus, Pencil, Trash2, Save, Plane, Hotel, MapPin, Calendar, Umbrella, HeadphonesIcon, Loader2 } from "lucide-react";
 import { toast } from "sonner@2.0.3";
 import { servicesAPI } from "../../utils/api";
@@ -83,7 +82,7 @@ export function ServicesManager() {
         // Editar serviço existente
         const updated = await servicesAPI.update(editingService.id, formData);
         setServices(
-          services.map((s) =>
+          services.map((s:any) =>
             s.id === editingService.id ? updated.service : s
           )
         );
@@ -127,6 +126,7 @@ export function ServicesManager() {
 
   return (
     <div>
+    
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-3xl">Gerenciar Serviços</h1>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
@@ -243,6 +243,7 @@ export function ServicesManager() {
           );
         })}
       </div>
+
     </div>
   );
 }
