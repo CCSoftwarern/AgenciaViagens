@@ -22,6 +22,7 @@ export function DashboardLayout({
     { id: "promotions", label: "Promoções", icon: Tag },
     { id: "services", label: "Serviços", icon: Settings },
     { id: "contacts", label: "Contatos", icon: Contact },
+    { id: "agencyInfo", label: "Informações da Agência", icon: Plane },
   ];
 
   return (

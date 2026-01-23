@@ -12,9 +12,11 @@ import { DashboardStats } from "./components/admin/DashboardStats";
 import { PromotionsManager } from "./components/admin/PromotionsManager";
 import { ServicesManager } from "./components/admin/ServicesManager";
 import { ContactManager } from "./components/admin/ContactManager";
+import { AgencyManager } from "./components/admin/AgencyManager";
 import { Shield } from "lucide-react";
 import { Loader2 } from "lucide-react";
 import { useAgency } from "./context/AgencyContext"
+
 
 
 
@@ -42,26 +44,6 @@ useEffect(() => {
 
   return () => clearInterval(interval);
 }, [loading]);
-
-
-  // 🔒 BLOQUEIA A APLICAÇÃO ATÉ CARREGAR OS DADOS
-
-// if (loading) {
-//   return (
-//     <div className="h-screen flex flex-col items-center justify-center gap-5 bg-gradient-to-b from-white to-gray-50">
-//       <Loader2 className="w-12 h-12 animate-spin text-blue-600" />
-
-//       <div className="text-center space-y-1">
-//         <p className="text-base font-semibold text-gray-700">
-//           Agência de Viagens
-//         </p>
-//         <p className="text-xs text-gray-500">
-//           Preparando sua experiência
-//         </p>
-//       </div>
-//     </div>
-//   );
-// }
 
 if (loading) {
   return (
@@ -108,6 +90,8 @@ if (loading) {
           {currentAdminPage === "promotions" && <PromotionsManager />}
           {currentAdminPage === "services" && <ServicesManager />}
           {currentAdminPage === "contacts" && <ContactManager />}
+          {currentAdminPage === "agencyInfo" && <AgencyManager />}
+
         </DashboardLayout>
         <Toaster />
       </>
@@ -131,8 +115,8 @@ if (loading) {
 
       <Header />
       <Hero />
-      <Services />
       <Promotions />
+       <Services />
       <ContactForm />
       <Footer />
       <Toaster />

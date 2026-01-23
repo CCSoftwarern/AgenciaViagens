@@ -132,10 +132,10 @@ export const agencyAPI = {
       requireAuth: true,
     }), 
 
-   update: (id: string, service: any) =>
+   update: (id: string, agencyInfo: any) =>
     fetchAPI(`/agencyinfos/${id}`, {
       method: "PUT",
-      body: JSON.stringify(service),
+      body: JSON.stringify(agencyInfo),
       requireAuth: true,
     }),
 

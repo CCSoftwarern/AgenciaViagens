@@ -5,7 +5,7 @@ import { Label } from "./ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Mail, Phone, MapPin, Loader2 } from "lucide-react";
 import { useState } from "react";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { contactAPI } from "../utils/api";
 import { useAgency } from "../context/AgencyContext";
 

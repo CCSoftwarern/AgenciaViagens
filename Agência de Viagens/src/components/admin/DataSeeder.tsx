@@ -2,7 +2,7 @@ import { Button } from "../ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { Database, Loader2 } from "lucide-react";
 import { useState } from "react";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { promotionsAPI, servicesAPI, agencyAPI } from "../../utils/api";
 
 const initialPromotions = [
@@ -125,7 +125,7 @@ const initialagencyInfo = [{
   imglogo: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cmF2ZWx8ZW58MXx8fHwxNzYyNzgyNjI0fDA&ixlib=rb-4.1.0&q=80&w=1080",
   liberado: true,
   enderecoCompleto: "Rua das Flores, 123, São Paulo, SP, 01234-567",
-  
+
 }];
 export function DataSeeder() {
   const [isSeeding, setIsSeeding] = useState(false);

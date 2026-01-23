@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "../ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 import { Trash2, Loader2 } from "lucide-react";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { contactAPI } from "../../utils/api";
 import React from "react";
 import { Card, CardContent } from "../ui/card";
@@ -32,8 +32,7 @@ export function ContactManager() {
             console.log("Loaded contacts:", data);
             setContacts(data.contacts || []);
         } catch (error) {
-            console.error("Error loading contacts:", error);
-            toast.error("Erro ao carregar contatos", error);
+            toast.error("Erro ao carregar contatos");
         } finally {
             setIsLoading(false);
         }

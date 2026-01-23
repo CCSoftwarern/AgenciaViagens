@@ -6,7 +6,7 @@ import { Textarea } from "../ui/textarea";
 import { Card, CardContent } from "../ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 import { Plus, Pencil, Trash2, Save, Plane, Hotel, MapPin, Calendar, Umbrella, HeadphonesIcon, Loader2 } from "lucide-react";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { servicesAPI } from "../../utils/api";
 
 interface Service {
@@ -126,7 +126,7 @@ export function ServicesManager() {
 
   return (
     <div>
-    
+
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-3xl">Gerenciar Serviços</h1>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
