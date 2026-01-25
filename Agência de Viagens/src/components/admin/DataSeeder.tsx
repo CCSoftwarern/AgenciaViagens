@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui
 import { Database, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { promotionsAPI, servicesAPI, agencyAPI } from "../../utils/api";
+import { promotionsAPI, servicesAPI, agencyAPI, cruisesAPI } from "../../utils/api";
 
 const initialPromotions = [
   {
@@ -126,7 +126,32 @@ const initialagencyInfo = [{
   liberado: true,
   enderecoCompleto: "Rua das Flores, 123, São Paulo, SP, 01234-567",
 
-}];
+}
+];
+
+const cruises = [
+  {
+    name: "Cruzeiro pelo Caribe",
+    duration: "7 dias",
+    price: "R$ 4.500",
+    parcelas: "10x de R$ 450",
+    description: "Explore as ilhas paradisíacas do Caribe com conforto e luxo a bordo.",
+    rating: 4.8,
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7SeJvO64mz4AT__v3kMxK2-WVPjHkpwxg2Q&s",
+  
+  },
+    {
+    name: "Cruzeiro pelo Mediterrâneo",
+    duration: "10 dias",
+    price: "R$ 6.500",
+    parcelas: "10x de R$ 450",
+    description: "Explore as ilhas paradisíacas do Caribe com conforto e luxo a bordo.",
+    rating: 4.8,
+    image: "https://triplover.com.br/wp-content/uploads/2019/07/Melhor-Cruzeiro-Mediterraneo.jpg",
+  
+  },
+];
+
 export function DataSeeder() {
   const [isSeeding, setIsSeeding] = useState(false);
 
@@ -144,9 +169,13 @@ export function DataSeeder() {
         await servicesAPI.create(service);
       }
 
-            // Seed agency info
+      // Seed agency info
       for (const agency of initialagencyInfo) {
         await agencyAPI.create(agency);
+      }
+      // Seed cruises
+      for (const cruise of cruises) {
+        await cruisesAPI.create(cruise);
       }
 
       toast.success("Dados iniciais carregados com sucesso!");

@@ -17,6 +17,11 @@ export function LoginPage({ onLogin }: LoginPageProps) {
   const [isLoading, setIsLoading] = useState(false);
   const supabase = createClient();
 
+  const voltarPagina = () => {
+    window.location.href = "/";
+  };
+
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -52,7 +57,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
           <div className="flex justify-center mb-4">
             <Plane className="w-12 h-12 text-blue-600" />
           </div>
-          <CardTitle className="text-2xl">Admin - ViagemPlus</CardTitle>
+          <CardTitle className="text-2xl">Admin</CardTitle>
           <CardDescription>
             Faça login para acessar o painel administrativo
           </CardDescription>
@@ -66,7 +71,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@viagemplus.com"
+                placeholder="email da sua agência"
                 required
               />
             </div>
@@ -84,9 +89,12 @@ export function LoginPage({ onLogin }: LoginPageProps) {
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? "Entrando..." : "Entrar"}
             </Button>
+            <Button type="button" variant="outline" className="w-full" onClick={voltarPagina}>
+              Voltar ao site
+            </Button>
           </form>
           <div className="mt-4 text-center text-sm text-gray-500">
-            <p>Crie uma conta usando o Supabase Dashboard</p>
+            <p></p>
           </div>
         </CardContent>
       </Card>

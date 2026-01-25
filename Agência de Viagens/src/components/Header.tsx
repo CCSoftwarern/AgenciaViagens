@@ -33,8 +33,8 @@ const { agencyInfo } = useAgency();
           <a href="#promotions" className="text-gray-700 hover:text-blue-600 transition">
             Promoções
           </a>
-          <a href="#destinations" className="text-gray-700 hover:text-blue-600 transition">
-            Destinos
+           <a href="#cruises" className="text-gray-700 hover:text-blue-600 transition">
+            Cruzeiros
           </a>
           <a href="#contact" className="text-gray-700 hover:text-blue-600 transition">
             Contato
@@ -80,11 +80,11 @@ const { agencyInfo } = useAgency();
               Promoções
             </a>
             <a
-              href="#destinations"
+              href="#cruises"
               className="text-gray-700 hover:text-blue-600 transition"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Destinos
+              Cruzeiros
             </a>
             <a
               href="#contact"

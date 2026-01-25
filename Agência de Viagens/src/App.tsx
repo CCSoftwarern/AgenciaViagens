@@ -3,6 +3,7 @@ import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { Services } from "./components/Services";
 import { Promotions } from "./components/Promotions";
+import { Cruises } from "./components/cruises";
 import { ContactForm } from "./components/ContactForm";
 import { Footer } from "./components/Footer";
 import { Toaster } from "./components/ui/sonner";
@@ -13,6 +14,7 @@ import { PromotionsManager } from "./components/admin/PromotionsManager";
 import { ServicesManager } from "./components/admin/ServicesManager";
 import { ContactManager } from "./components/admin/ContactManager";
 import { AgencyManager } from "./components/admin/AgencyManager";
+import { CruisesManager } from "./components/admin/CruisesManager";
 import { Shield } from "lucide-react";
 import { Loader2 } from "lucide-react";
 import { useAgency } from "./context/AgencyContext"
@@ -91,6 +93,7 @@ if (loading) {
           {currentAdminPage === "services" && <ServicesManager />}
           {currentAdminPage === "contacts" && <ContactManager />}
           {currentAdminPage === "agencyInfo" && <AgencyManager />}
+          {currentAdminPage === "cruises" && <CruisesManager />}
 
         </DashboardLayout>
         <Toaster />
@@ -116,6 +119,7 @@ if (loading) {
       <Header />
       <Hero />
       <Promotions />
+      <Cruises />
        <Services />
       <ContactForm />
       <Footer />

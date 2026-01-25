@@ -76,6 +76,31 @@ export const promotionsAPI = {
     }),
 };
 
+// cruises
+export const cruisesAPI = {
+  getAll: () => fetchAPI("/cruises"),
+  getById: (id: string) => fetchAPI(`/cruises/${id}`),
+
+  create: (cruise: any) =>
+    fetchAPI("/cruises", {
+      method: "POST",
+      body: JSON.stringify(cruise),
+      requireAuth: true,
+    }),
+    update: (id: string, cruise: any) =>
+    fetchAPI(`/cruises/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(cruise),
+      requireAuth: true,
+    }),
+    delete: (id: string) =>
+    fetchAPI(`/cruises/${id}`, {
+      method: "DELETE",
+      requireAuth: true,
+    }),
+};
+
+
 // Services
 export const servicesAPI = {
   getAll: () => fetchAPI("/services"),
