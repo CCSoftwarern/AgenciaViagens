@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { Calendar, Users, Star, Loader2, Plane } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useAgency } from "../context/AgencyContext";
+import { motion } from "framer-motion";
 import { promotionsAPI } from "../utils/api";
 import {
   Dialog,
@@ -59,7 +60,13 @@ export function Promotions() {
 
   };
   return (
-    <section id= "promotions" className = "py-20" >
+    <motion.section id= "promotions" className = "py-20" 
+     initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+    
+    >
       <div className="container mx-auto px-4" >
         <div className="text-center mb-12" >
           <h2 className="text-4xl mb-4" > Promoções Especiais </h2>
@@ -197,7 +204,7 @@ export function Promotions() {
   </DialogContent>
 </Dialog>
 
-  </section>
+  </motion.section>
   
   );
 

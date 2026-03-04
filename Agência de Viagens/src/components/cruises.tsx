@@ -99,7 +99,7 @@ export function Cruises() {
         <span className="text-sm" > { cruise.rating } </span>
         </div>
         </div>
-        < h3 className = "text-xl mb-3" > { cruise.title } </h3>
+        < h3 className = "text-xl mb-3" > { cruise.description } </h3>
         < div className = "flex items-center gap-4 text-sm text-gray-600 mb-4" >
         <div className="flex items-center gap-1" >
         <Calendar className="w-4 h-4" />
@@ -152,7 +152,7 @@ export function Cruises() {
           </div>
 
           <p className="text-gray-600">
-            📍 <strong>Destino:</strong> {selectedCruise.destination}
+            📍 <strong>Destino:</strong> {selectedCruise.description}
           </p>
 
           <div className="flex gap-6 text-sm text-gray-600">

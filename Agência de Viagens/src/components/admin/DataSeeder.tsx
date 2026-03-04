@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui
 import { Database, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { promotionsAPI, servicesAPI, agencyAPI, cruisesAPI } from "../../utils/api";
+import { promotionsAPI, servicesAPI, agencyAPI, cruisesAPI, clientsAPI } from "../../utils/api";
 
 const initialPromotions = [
   {
@@ -152,6 +152,48 @@ const cruises = [
   },
 ];
 
+const initialClients =[
+  {
+    name: "João Silva",
+    email: "joao.silva@example.com",
+    cpf: "123.456.789-00",
+    rg: "12.345.678-9",
+    birthDate: "1990-05-15",
+    phone: "+55 (11) 91234-5678",
+    postalCode: "01234-567",
+    address: "Rua A, 123, São Paulo, SP",
+    icon: "UserCircle",
+    anexos: [
+      {
+        fileName: "documento1.pdf",
+        url: "https://example.com/documento1.pdf",
+      },
+      {
+        fileName: "documento2.jpg",
+        url: "https://example.com/documento2.jpg",
+      },
+    ],
+  },
+  {
+    name: "Maria Oliveira",
+    email: "maria.oliveira@example.com",
+    cpf: "987.654.321-00",
+    rg: "98.765.432-1",
+    birthDate: "1985-10-20",
+    phone: "+55 (21) 99876-5432",
+    postalCode: "76543-210",
+    address: "Avenida B, 456, Rio de Janeiro, RJ",
+    icon: "UserCircle",
+    anexos: [
+      {
+        fileName: "documentoA.pdf",
+        url: "https://example.com/documentoA.pdf",
+      },
+    ],
+  },
+
+]
+
 export function DataSeeder() {
   const [isSeeding, setIsSeeding] = useState(false);
 
@@ -176,6 +218,11 @@ export function DataSeeder() {
       // Seed cruises
       for (const cruise of cruises) {
         await cruisesAPI.create(cruise);
+      }
+
+      // Seed clients
+      for (const client of initialClients) {
+        await clientsAPI.create(client);
       }
 
       toast.success("Dados iniciais carregados com sucesso!");

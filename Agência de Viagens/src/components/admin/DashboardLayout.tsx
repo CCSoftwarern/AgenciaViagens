@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react";
 import { Button } from "../ui/button";
-import { Plane, LayoutDashboard, Tag, Settings, LogOut, Menu, X, Contact } from "lucide-react";
+import { Plane, LayoutDashboard, Tag, Settings, LogOut, Menu, X, Contact, CircleUser, Ship, HandCoins } from "lucide-react";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -23,7 +23,10 @@ export function DashboardLayout({
     { id: "services", label: "Serviços", icon: Settings },
     { id: "contacts", label: "Contatos", icon: Contact },
     { id: "agencyInfo", label: "Agência", icon: Plane },
-    { id: "cruises", label: "Cruzeiros", icon: Plane },
+    { id: "cruises", label: "Cruzeiros", icon: Ship },
+    { id: "clients", label: "Clientes", icon: CircleUser },
+    { id: "sales", label: "Vendas", icon: HandCoins },
+    { id: "logout", label: "Sair", icon: LogOut, onClick: onLogout },
   ];
 
   return (

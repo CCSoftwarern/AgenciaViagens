@@ -15,6 +15,8 @@ import { ServicesManager } from "./components/admin/ServicesManager";
 import { ContactManager } from "./components/admin/ContactManager";
 import { AgencyManager } from "./components/admin/AgencyManager";
 import { CruisesManager } from "./components/admin/CruisesManager";
+import { ClientsManager } from "./components/admin/ClientsManager";
+import { SalesManager } from "./components/admin/SalesManager";
 import { Shield } from "lucide-react";
 import { Loader2 } from "lucide-react";
 import { useAgency } from "./context/AgencyContext"
@@ -94,6 +96,8 @@ if (loading) {
           {currentAdminPage === "contacts" && <ContactManager />}
           {currentAdminPage === "agencyInfo" && <AgencyManager />}
           {currentAdminPage === "cruises" && <CruisesManager />}
+          {currentAdminPage === "clients" && <ClientsManager />}
+          {currentAdminPage === "sales" &&  <SalesManager />}
 
         </DashboardLayout>
         <Toaster />

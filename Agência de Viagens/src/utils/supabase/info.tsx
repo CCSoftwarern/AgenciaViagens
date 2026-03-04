@@ -2,3 +2,5 @@
 
 export const projectId = "himkhrzfpmlxyctbsssi"
 export const publicAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhpbWtocnpmcG1seHljdGJzc3NpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI3OTUxNjIsImV4cCI6MjA3ODM3MTE2Mn0.2VCwf9JqERtFeMg6djyGbgAfUUe30gBrW9f03u9y_90"
+export const VITE_SUPABASE_URL="https://himkhrzfpmlxyctbsssi.supabase.co"
+export const VITE_SUPABASE_PUBLISHABLE_KEY="sb_publishable_3NEobDhGjpIx5WC_2aoNlg_MKeB_LPB"
