@@ -57,7 +57,10 @@ export function ContactManager() {
 
     return (
       <div>
+       
         <h2 className="text-2xl font-bold mb-4">Gerenciador de Contatos</h2>
+        <h6 className="text-sm text-gray-500">Aqui você pode visualizar e gerenciar os contatos enviados pelos clientes através do formulário de contato.</h6>
+        
 
         {isLoading ? (
             <div className="flex justify-center items-center h-32">

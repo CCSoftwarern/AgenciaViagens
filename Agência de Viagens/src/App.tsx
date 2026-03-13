@@ -17,9 +17,11 @@ import { AgencyManager } from "./components/admin/AgencyManager";
 import { CruisesManager } from "./components/admin/CruisesManager";
 import { ClientsManager } from "./components/admin/ClientsManager";
 import { SalesManager } from "./components/admin/SalesManager";
+import { UsersManager } from "./components/admin/UsersManager";
 import { Shield } from "lucide-react";
 import { Loader2 } from "lucide-react";
-import { useAgency } from "./context/AgencyContext"
+import { useAgency } from "./context/AgencyContext";
+import CookieConsent from "react-cookie-consent";
 
 
 
@@ -98,6 +100,7 @@ if (loading) {
           {currentAdminPage === "cruises" && <CruisesManager />}
           {currentAdminPage === "clients" && <ClientsManager />}
           {currentAdminPage === "sales" &&  <SalesManager />}
+          {currentAdminPage === "usuarios" && <UsersManager />}
 
         </DashboardLayout>
         <Toaster />
@@ -120,6 +123,8 @@ if (loading) {
         <Shield className="w-6 h-6" />
       </button>
 
+
+
       <Header />
       <Hero />
       <Promotions />
@@ -128,7 +133,26 @@ if (loading) {
       <ContactForm />
       <Footer />
       <Toaster />
+
+      <CookieConsent
+        location="bottom"
+        buttonText="Aceitar"
+        declineButtonText="Recusar"
+        enableDeclineButton
+        cookieName="meuAppCookie"
+        style={{ background: "#2B373B" }}
+        buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
+        expires={150}
+      >
+          Este site utiliza cookies para melhorar sua experiência de navegação,
+      personalizar conteúdos e analisar o tráfego. Ao continuar utilizando
+      este site, você concorda com nossa política de uso de cookies. 🍪
+      </CookieConsent>
+
     </div>
+
+
+
   );
 }
 

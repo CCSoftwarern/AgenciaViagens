@@ -27,6 +27,7 @@ export interface Venda {
     vr_saldo: number;
     nm_passageiros: string[];
     nm_forma_pagamento: string | null;
+    nr_reserva: string | null;
 }
 
 export type CreateClient = Omit<Venda, "id">;

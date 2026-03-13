@@ -6,6 +6,7 @@ import { Calendar, Users, Star, Loader2, Plane } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useAgency } from "../context/AgencyContext";
 import { motion } from "framer-motion";
+import Swal from "sweetalert2";
 import { promotionsAPI } from "../utils/api";
 import {
   Dialog,
@@ -14,10 +15,6 @@ import {
   DialogTitle,
   DialogFooter,
 } from "./ui/dialog";
-
-
-
-
 
 export function Promotions() {
   const [promotions, setPromotions] = useState<any[]>([]);
@@ -44,16 +41,42 @@ export function Promotions() {
       setIsDetailsOpen(true);
     };
 
-  const loadPromotions = async () => {
-    try {
-      setIsLoading(true);
-      const data = await promotionsAPI.getAll();
-      setPromotions(data.promotions || []);
-    } catch (error) {
-      console.error("Error loading promotions:", error);
-    } finally {
-      setIsLoading(false);
-    }
+    const loadPromotions = async () => {
+  try {
+    setIsLoading(true);
+
+    const data = await promotionsAPI.getAll();
+
+    const hoje = new Date();
+
+    const validPromotions = (data.promotions || []).filter((promo?: any) => {
+      return new Date(promo.dateexpiration) >= hoje;
+    });
+
+    setPromotions(validPromotions);
+    // Swal.fire({
+    //   title: validPromotions[0].title,
+    //   text: validPromotions[0].description,
+    //   icon: "info",
+    //   confirmButtonText: "Ver oferta"
+    // });
+
+  } catch (error) {
+    console.error("Error loading promotions:", error);
+  } finally {
+    setIsLoading(false);
+  }
+
+  // const loadPromotions = async () => {
+  //   try {
+  //     setIsLoading(true);
+  //     const data = await promotionsAPI.getAll();
+  //     setPromotions(data.promotions || []);
+  //   } catch (error) {
+  //     console.error("Error loading promotions:", error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
 
 
 

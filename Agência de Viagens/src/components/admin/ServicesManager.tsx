@@ -128,7 +128,11 @@ export function ServicesManager() {
     <div>
 
       <div className="flex items-center justify-between mb-8">
+        <div>
         <h1 className="text-3xl">Gerenciar Serviços</h1>
+        <h6 className="text-sm text-gray-500">Aqui você pode adicionar, editar ou remover os serviços oferecidos pela agência.</h6>
+        </div>
+
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
             <Button

@@ -138,7 +138,10 @@ const handleChange = (
   <div>
     {/* HEADER */}
     <div className="flex items-center justify-between mb-8">
-      <h1 className="text-3xl">Gerenciar Clientes</h1>
+                <div>
+        <h1 className="text-3xl">Gerenciar Clientes</h1>
+        <h6 className="text-sm text-gray-500">Aqui você pode adicionar, editar ou remover os clientes cadastrados.</h6>
+          </div>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogTrigger asChild>
@@ -306,7 +309,7 @@ const handleChange = (
                 <TableCell>{cliente.telefone}</TableCell>
                 <TableCell>{cliente.endereco}</TableCell>
                 <TableCell>
-                  {new Date(cliente.createdAt).toLocaleString()}
+                  {new Date(cliente.created_at).toLocaleString()}
                 </TableCell>
                 <TableCell className="text-right">
                 <div className="flex gap-2 justify-end">

@@ -41,17 +41,37 @@ export function Cruises() {
       setIsDetailsOpen(true);
     };
 
-  const loadPromotions = async () => {
+  // const loadPromotions = async () => {
+  //   try {
+  //     setIsLoading(true);
+  //     const data = await cruisesAPI.getAll();
+  //     setCruises(data.cruises || []);
+  //   } catch (error) {
+  //     console.error("Error loading cruises:", error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+
+    const loadPromotions = async () => {
     try {
       setIsLoading(true);
+  
       const data = await cruisesAPI.getAll();
-      setCruises(data.cruises || []);
+  
+      const hoje = new Date();
+  
+      const validPromotions = (data.cruises || []).filter((cruise?: any) => {
+        return new Date(cruise.expirationDate) >= hoje;
+      });
+  
+      setCruises(validPromotions);
+  
     } catch (error) {
-      console.error("Error loading cruises:", error);
+      console.error("Error loading promotions:", error);
     } finally {
       setIsLoading(false);
     }
-
+  
 
 
 

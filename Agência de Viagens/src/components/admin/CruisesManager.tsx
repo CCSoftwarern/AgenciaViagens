@@ -18,7 +18,9 @@ interface Cruise {
   rating: number,
   duration: string,
   parcelas: string,
-  description: string
+  description: string,
+  expirationDate: Date,
+  desconto?: string,
 }
 
 export function CruisesManager() {
@@ -29,13 +31,14 @@ export function CruisesManager() {
   const [editingCruise, setEditingCruise] = useState<Cruise | null>(null);
   const [formData, setFormData] = useState<Partial<Cruise>>({
     name: "",
-    image: "",
     price: "",
     rating: 5,
     duration: "",
     parcelas: "",
     description: "",
     image: "",
+    expirationDate: new Date(),
+    desconto: "",
   });
 
   useEffect(() => {
@@ -99,13 +102,14 @@ export function CruisesManager() {
       setEditingCruise(null);
       setFormData({
         name: "",
-        image: "",
         price: "",
         rating: 5,
         duration: "",
         parcelas: "",
         description: "",
         image: "",
+        expirationDate: new Date(),
+          desconto: "",
       });
     } catch (error) {
       console.error("Error saving cruise:", error);
@@ -141,13 +145,14 @@ export function CruisesManager() {
                 setEditingCruise(null);
                 setFormData({
                     name: "",
-                    image: "",
                     price: "",
                     rating: 5,
                     duration: "",
                     parcelas: "",
                     description: "",
                     image: "",
+                    expirationDate: new Date(),
+                    desconto: "",
                 });
               }}
             >
@@ -206,6 +211,16 @@ export function CruisesManager() {
                     required
                   />
                 </div>
+                <div>
+                  <Label htmlFor="expirationDate">Data de Expiração</Label>
+                  <Input
+                    id="expirationDate"
+                    type="date"
+                    value={formData.expirationDate}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
               </div>
               <div className="grid grid-cols-3 gap-4">
                 <div>
@@ -215,6 +230,16 @@ export function CruisesManager() {
                     value={formData.price}
                     onChange={handleChange}
                     placeholder="R$ 8.500"
+                    required
+                  />
+                </div>
+                  <div>
+                  <Label htmlFor="desconto">Desconto</Label>
+                  <Input
+                    id="desconto"
+                    value={formData.desconto}
+                    onChange={handleChange}
+                    placeholder="R$ 2.500"
                     required
                   />
                 </div>
@@ -261,6 +286,7 @@ export function CruisesManager() {
                 <TableHead>Duração</TableHead>
                 <TableHead>Preço</TableHead>
                 <TableHead>Desconto</TableHead>
+                <TableHead>Data de Expiração</TableHead>
                 <TableHead className="text-right">Ações</TableHead>
               </TableRow>
             </TableHeader>
@@ -279,7 +305,12 @@ export function CruisesManager() {
                   </TableCell>
                   <TableCell>
                     <span className="bg-red-100 text-red-600 px-2 py-1 rounded text-sm">
-                      {cruise.price}
+                      {cruise.desconto}
+                    </span>
+                  </TableCell>
+                  <TableCell>
+                    <span className="bg-red-100 text-red-600 px-2 py-1 rounded text-sm">
+                      {cruise.expirationDate}
                     </span>
                   </TableCell>
                   <TableCell className="text-right">

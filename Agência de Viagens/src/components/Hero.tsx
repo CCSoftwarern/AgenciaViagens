@@ -28,15 +28,7 @@ export function Hero()
         <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
           Experiências únicas e inesquecíveis para tornar sua viagem dos sonhos realidade
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-            <Search className="w-5 h-5 mr-2" />
-            Explorar Destinos
-          </Button>
-          <Button size="lg" variant="outline" className="bg-white text-gray-900 hover:bg-gray-100" >
-            Ver Promoções
-          </Button>
-        </div>
+
       </div>
     </section>
   );

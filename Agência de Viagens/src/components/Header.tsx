@@ -5,9 +5,18 @@ import { useAgency } from "../context/AgencyContext";
 import React from "react";
 
 
+
 export function Header() {
 const { agencyInfo } = useAgency();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+const abrirWhatsapp = (titulo: string) => {
+    const phoneNumber = agencyInfo?.watsapp;
+    const message = "Olá, gostaria de mais informações sobre as promoções de viagens. " + titulo;
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
+  };
+
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
@@ -42,7 +51,7 @@ const { agencyInfo } = useAgency();
         </div>
 
         <div className="hidden md:block">
-          <Button>Solicitar Orçamento</Button>
+          <Button onClick={() => abrirWhatsapp("Solicitar Orçamento")}>Solicitar Orçamento</Button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -93,7 +102,9 @@ const { agencyInfo } = useAgency();
             >
               Contato
             </a>
-            <Button className="w-full">Solicitar Orçamento</Button>
+            <Button className="w-full" onClick={() => abrirWhatsapp("Solicitar Orçamento")}>
+              Solicitar Orçamento
+            </Button>
           </div>
         </div>
       )}

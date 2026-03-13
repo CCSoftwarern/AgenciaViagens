@@ -1,6 +1,9 @@
 import { ReactNode, useState } from "react";
 import { Button } from "../ui/button";
-import { Plane, LayoutDashboard, Tag, Settings, LogOut, Menu, X, Contact, CircleUser, Ship, HandCoins } from "lucide-react";
+import { Plane, LayoutDashboard, Tag, Settings, LogOut, Menu, X, Contact, CircleUser, Ship, HandCoins, PersonStanding } from "lucide-react";
+import { useAgency } from "../../context/AgencyContext";
+
+
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -16,6 +19,7 @@ export function DashboardLayout({
   onLogout,
 }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { agencyInfo } = useAgency();
 
   const menuItems = [
     { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -24,9 +28,9 @@ export function DashboardLayout({
     { id: "contacts", label: "Contatos", icon: Contact },
     { id: "agencyInfo", label: "Agência", icon: Plane },
     { id: "cruises", label: "Cruzeiros", icon: Ship },
-    { id: "clients", label: "Clientes", icon: CircleUser },
+    { id: "clients", label: "Clientes", icon: PersonStanding },
     { id: "sales", label: "Vendas", icon: HandCoins },
-    { id: "logout", label: "Sair", icon: LogOut, onClick: onLogout },
+    { id: "usuarios", label: "Usuários", icon: CircleUser },
   ];
 
   return (
@@ -43,7 +47,7 @@ export function DashboardLayout({
             </button>
             <div className="flex items-center gap-2">
               <Plane className="w-8 h-8 text-blue-600" />
-              <span className="text-xl">Sua agência</span>
+              <span className="text-xl">{agencyInfo?.name}</span>
             </div>
           </div>
           <Button variant="outline" onClick={onLogout}>

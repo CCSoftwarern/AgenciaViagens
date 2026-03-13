@@ -55,7 +55,7 @@ export function ContactForm() {
     <section id="contact" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl mb-4">Solicite Seu Orçamento</h2>
+          <h2 className="text-4xl mb-4">Solicite seu orçamento</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Entre em contato conosco e planeje a viagem perfeita
           </p>

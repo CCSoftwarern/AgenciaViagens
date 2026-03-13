@@ -288,6 +288,8 @@ export const salesAPI = {
     }),
 };
 
+
+
 // export const clientesAPI = {
 //   async create(client: Client): Promise<Client> {
 //   return await fetchAPI("/rest/v1/clientes", {

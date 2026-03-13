@@ -21,6 +21,7 @@ interface Promotion {
   discount: string;
   rating: number;
   image: string;
+  dateexpiration: Date;
 }
 
 export function PromotionsManager() {
@@ -39,6 +40,7 @@ export function PromotionsManager() {
     discount: "",
     rating: 5,
     image: "",
+    dateexpiration: new Date(),
   });
 
   useEffect(() => {
@@ -110,6 +112,7 @@ export function PromotionsManager() {
         discount: "",
         rating: 5,
         image: "",
+        dateexpiration: new Date(),
       });
     } catch (error) {
       console.error("Error saving promotion:", error);
@@ -137,7 +140,10 @@ export function PromotionsManager() {
   return (
     <div>
       <div className="flex items-center justify-between mb-8">
+          <div>
         <h1 className="text-3xl">Gerenciar Promoções</h1>
+        <h6 className="text-sm text-gray-500">Aqui você pode adicionar, editar ou remover as promoções oferecidas pela agência.</h6>
+          </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
             <Button
@@ -153,6 +159,7 @@ export function PromotionsManager() {
                   discount: "",
                   rating: 5,
                   image: "",
+                  dateexpiration: new Date(),
                 });
               }}
             >
@@ -191,6 +198,7 @@ export function PromotionsManager() {
                   />
                 </div>
               </div>
+              <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="title">Título</Label>
                 <Input
@@ -199,6 +207,17 @@ export function PromotionsManager() {
                   onChange={handleChange}
                   required
                 />
+              </div>
+               <div>
+                <Label htmlFor="dateexpiration">Data de Expiração</Label>
+                <Input
+                  id="dateexpiration"
+                  type="date"
+                  value={formData.dateexpiration}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -296,6 +315,7 @@ export function PromotionsManager() {
                 <TableHead>Duração</TableHead>
                 <TableHead>Preço</TableHead>
                 <TableHead>Desconto</TableHead>
+                <TableHead>Expira em</TableHead>
                 <TableHead className="text-right">Ações</TableHead>
               </TableRow>
             </TableHeader>
@@ -316,6 +336,11 @@ export function PromotionsManager() {
                   <TableCell>
                     <span className="bg-red-100 text-red-600 px-2 py-1 rounded text-sm">
                       {promotion.discount}
+                    </span>
+                  </TableCell>
+                              <TableCell>
+                    <span className="bg-red-100 text-red-600 px-2 py-1 rounded text-sm">
+                      {promotion.dateexpiration}
                     </span>
                   </TableCell>
                   <TableCell className="text-right">
