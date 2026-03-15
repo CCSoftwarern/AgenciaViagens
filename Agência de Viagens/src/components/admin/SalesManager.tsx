@@ -61,7 +61,7 @@ export function SalesManager() {
     nm_cliente: "",
     id_vendedor: null,
     nm_vendedor: "",
-    dt_lancamento: null,
+    dt_lancamento: new Date(),
     dt_venda: null,
     dt_cancelamento: null,
     dt_reembolso: null,

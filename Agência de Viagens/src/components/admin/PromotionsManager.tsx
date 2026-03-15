@@ -22,6 +22,7 @@ interface Promotion {
   rating: number;
   image: string;
   dateexpiration: Date;
+  createdAt: Date;
 }
 
 export function PromotionsManager() {
@@ -41,6 +42,7 @@ export function PromotionsManager() {
     rating: 5,
     image: "",
     dateexpiration: new Date(),
+    createdAt: new Date(),
   });
 
   useEffect(() => {
@@ -113,6 +115,7 @@ export function PromotionsManager() {
         rating: 5,
         image: "",
         dateexpiration: new Date(),
+        createdAt: new Date,
       });
     } catch (error) {
       console.error("Error saving promotion:", error);
@@ -160,6 +163,7 @@ export function PromotionsManager() {
                   rating: 5,
                   image: "",
                   dateexpiration: new Date(),
+                  createdAt: new Date(),
                 });
               }}
             >

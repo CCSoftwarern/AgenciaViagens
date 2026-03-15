@@ -245,20 +245,7 @@ export function DataSeeder() {
           Se o banco de dados estiver vazio, clique no botão abaixo para carregar dados de exemplo
         </CardDescription>
       </CardHeader>
-      <CardContent>
-        <Button onClick={handleSeedData} disabled={isSeeding}>
-          {isSeeding ? (
-            <>
-              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-              Carregando...
-            </>
-          ) : (
-            <>
-              <Database className="w-4 h-4 mr-2" />
-              Carregar Dados
-            </>
-          )}
-        </Button>
+      <CardContent> 
       </CardContent>
     </Card>
   );

@@ -1,38 +1,128 @@
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { Tag, Settings, Users, TrendingUp } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Tag, Settings, Users, TrendingUp, Ship } from "lucide-react";
 import { DataSeeder } from "./DataSeeder";
+import { createClient } from "@supabase/supabase-js";
+import { VITE_SUPABASE_URL, VITE_SUPABASE_PUBLISHABLE_KEY } from "../../utils/supabase/info";
+import { formatDistanceToNow } from "date-fns";
+import { ptBR } from "date-fns/locale";
+const supabase = createClient(VITE_SUPABASE_URL, VITE_SUPABASE_PUBLISHABLE_KEY);
 
 export function DashboardStats() {
-  const stats = [
-    {
-      title: "Total de Promoções",
-      value: "6",
-      icon: Tag,
-      color: "text-blue-600",
-      bgColor: "bg-blue-100",
-    },
-    {
-      title: "Serviços Ativos",
-      value: "6",
-      icon: Settings,
-      color: "text-green-600",
-      bgColor: "bg-green-100",
-    },
-    {
-      title: "Orçamentos Recebidos",
-      value: "28",
-      icon: Users,
-      color: "text-purple-600",
-      bgColor: "bg-purple-100",
-    },
-    {
-      title: "Taxa de Conversão",
-      value: "32%",
-      icon: TrendingUp,
-      color: "text-orange-600",
-      bgColor: "bg-orange-100",
-    },
-  ];
+const [statsData, setStats] = useState<any>(null);
+const [rankingSales, setRankingSales] = useState<any>(null);
+
+useEffect(() => {
+  loadStats();
+  loadRankingSales();
+}, []);
+
+async function loadStats() {
+
+  const { data, error } = await supabase
+    .from("view_kv_store_stats")
+    .select("*")
+    .single();
+
+  if (error) {
+    console.error("Erro ao carregar stats:", error);
+    return;
+  }
+
+  setStats(data);
+}
+
+if (!statsData) {
+  return <p>Carregando...</p>;
+}
+
+// Melhores vendedores do Mês
+async function loadRankingSales() {
+  const { data, error } = await supabase
+    .from("view_ranking_vendas_mes")
+    .select("*")
+
+  if (error) {
+    console.error("Erro ao carregar stats:", error);
+    return;
+  }
+
+  setRankingSales(data);
+  console.log(data);
+}
+
+if (!rankingSales) {
+  return <p>Carregando...</p>;
+}
+
+
+
+
+const stats = [
+  {
+    title: "Total de Promoções",
+    value: statsData.promotions,
+    icon: Tag,
+    color: "text-blue-600",
+    bgColor: "bg-blue-100",
+  },
+  {
+    title: "Serviços Ativos",
+    value: statsData.service,
+    icon: Settings,
+    color: "text-green-600",
+    bgColor: "bg-green-100",
+  },
+  {
+    title: "Cruzeiros",
+    value: statsData.cruises,
+    icon: Ship,
+    color: "text-purple-600",
+    bgColor: "bg-purple-100",
+  },
+  {
+    title: "Vendas",
+    value: statsData.sales,
+    icon: TrendingUp,
+    color: "text-orange-600",
+    bgColor: "bg-orange-100",
+  },
+];
+
+const atividadesRecentes =[
+  {
+    title: "Ultima solicitação de orçamento",
+    value: statsData?.last_contact?.name,
+    createdAt: statsData?.last_contact?.createdAt
+
+  },
+  {
+    title: "Promoção atualizada",
+    value: statsData?.last_promotion?.title,
+    createdAt: statsData?.last_promotion?.createdAt
+  },
+  {
+    title: "Ultimo serviço",
+    value: statsData?.last_service?.title,
+    createdAt: statsData?.last_service?.createdAt
+
+  }
+
+];
+
+
+function tempoRelativo(data: any) {
+  if (!data) return "";
+
+  const date = new Date(data);
+
+  if (isNaN(date.getTime())) return "";
+
+  return formatDistanceToNow(date, {
+    addSuffix: true,
+    locale: ptBR
+  });
+}
 
   return (
     <div>
@@ -59,66 +149,61 @@ export function DashboardStats() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Atividade Recente</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between py-2 border-b">
-                <div>
-                  <p>Nova solicitação de orçamento</p>
-                  <p className="text-sm text-gray-500">João Silva - Caribe</p>
-                </div>
-                <span className="text-sm text-gray-500">Há 2h</span>
-              </div>
-              <div className="flex items-center justify-between py-2 border-b">
-                <div>
-                  <p>Promoção atualizada</p>
-                  <p className="text-sm text-gray-500">Europa - 20% OFF</p>
-                </div>
-                <span className="text-sm text-gray-500">Há 5h</span>
-              </div>
-              <div className="flex items-center justify-between py-2 border-b">
-                <div>
-                  <p>Novo serviço adicionado</p>
-                  <p className="text-sm text-gray-500">Cruzeiros Marítimos</p>
-                </div>
-                <span className="text-sm text-gray-500">Há 1d</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+       <Card>
+  <CardHeader>
+    <CardTitle>Atividade Recente</CardTitle>
+  </CardHeader>
 
+  <CardContent>
+    <div className="space-y-4">
+
+      {atividadesRecentes.map((item, index) => (
+        <div
+          key={index}
+          className="flex items-center justify-between py-2 border-b"
+        >
+          <div>
+            <p>{item.title}</p>
+            <p className="text-sm text-gray-500">
+              {item.value || "Sem informações"}
+            </p>
+          </div>
+<span className="text-sm text-gray-500">
+  {tempoRelativo(item.createdAt)}
+</span>
+        </div>
+      ))}
+
+    </div>
+  </CardContent>
+</Card>
         <Card>
           <CardHeader>
-            <CardTitle>Destinos Mais Procurados</CardTitle>
+            <CardTitle>Ranking de vendedores do Mês</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {[
-                { name: "Caribe", count: 45, percentage: 85 },
-                { name: "Europa", count: 38, percentage: 72 },
-                { name: "Maldivas", count: 32, percentage: 60 },
-                { name: "África", count: 28, percentage: 53 },
-              ].map((destination, index) => (
-                <div key={index}>
-                  <div className="flex justify-between mb-1">
-                    <span>{destination.name}</span>
-                    <span className="text-sm text-gray-500">
-                      {destination.count} buscas
-                    </span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      className="bg-blue-600 h-2 rounded-full"
-                      style={{ width: `${destination.percentage}%` }}
-                    />
-                  </div>
-                </div>
-              ))}
+              <CardContent>
+        <div className="space-y-4">
+
+          {rankingSales?.map((destination, index) => (
+            <div key={index}>
+              <div className="flex justify-between mb-1">
+                <span>{destination.nm_vendedor}</span>
+                <span className="text-sm text-gray-500">
+                  {destination.total_vendas} venda(s) - {destination.percentual_total}% - Total: {destination.valor_total}
+                </span>
+              </div>
+
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div
+                  className="bg-blue-600 h-2 rounded-full"
+                  style={{ width: `${destination.percentual_total}%` }}
+                />
+              </div>
             </div>
-          </CardContent>
+          ))}
+
+        </div>
+      </CardContent>
         </Card>
       </div>
     </div>

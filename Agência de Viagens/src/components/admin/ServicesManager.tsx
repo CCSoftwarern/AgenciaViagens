@@ -14,6 +14,7 @@ interface Service {
   icon: string;
   title: string;
   description: string;
+  createdAt: Date;
 }
 
 const iconMap: Record<string, any> = {
@@ -35,6 +36,8 @@ export function ServicesManager() {
     icon: "Plane",
     title: "",
     description: "",
+    createdAt: new Date(),
+
   });
 
   useEffect(() => {
@@ -100,6 +103,7 @@ export function ServicesManager() {
         icon: "Plane",
         title: "",
         description: "",
+        createdAt: new Date(),
       });
     } catch (error) {
       console.error("Error saving service:", error);
@@ -142,6 +146,7 @@ export function ServicesManager() {
                   icon: "Plane",
                   title: "",
                   description: "",
+                  createdAt: new Date(),
                 });
               }}
             >

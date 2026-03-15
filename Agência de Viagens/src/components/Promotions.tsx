@@ -23,7 +23,6 @@ export function Promotions() {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const { agencyInfo } = useAgency();
 
-
   useEffect(() => {
     loadPromotions();
   }, []);
